@@ -1,6 +1,4 @@
-import javax.swing.*;
-import java.awt.*;
-import view.*;
+import view.App;
 
 /**
  * Main du Snake
@@ -14,7 +12,4 @@ public class Main {
         App frame = new App("Snake", 800,800);
 
     }
-
-    
-
 }

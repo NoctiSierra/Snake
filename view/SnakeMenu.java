@@ -2,6 +2,8 @@ package view;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * Classe extend de JPanel
@@ -11,7 +13,6 @@ import java.awt.*;
 
 public class SnakeMenu extends JPanel {
     // declare a new container to get the content pain
-    Container window = getContentPane();
 
     /* Set Program Components ===================================== */
      
@@ -25,6 +26,16 @@ public class SnakeMenu extends JPanel {
         this.setLayout(layout);
         JButton b1 = new JButton("Jouer");
 
+        //classe anonyme pour le controle du bouton
+        ActionListener l=new ActionListener() {
+           @Override
+           public void actionPerformed(ActionEvent e) {
+                App.getInstance().changeDisplay(1);
+                System.out.println("test");
+           }
+        };
+        b1.addActionListener(l);
+
 
         // Réglage Bouton
         gc.fill = GridBagConstraints.BOTH;
@@ -37,6 +48,5 @@ public class SnakeMenu extends JPanel {
     /* Methods ==================================================== */
 
     /* Listeners ================================================== */
-
 
 }

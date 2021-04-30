@@ -1,3 +1,8 @@
+package view;
+
+import view.GrilleView;
+import view.SnakeMenu;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -6,27 +11,49 @@ import java.awt.*;
  */
 
 public class App extends JFrame {
-    // declare a new container to get the content pain*
 
-    CardLayout c = new CardLayout();
-    SnakeMenu menu=new SnakeMenu();
-    GrilleView grille;
+    //CONSTANTE
+    final static String MENU = "Menu";
+    final static String GAME = "Jeu";
+
+    //référence pour le reste du code
+    private static App instance;
+
+    /**
+     * gestionnaire pour l'affichage
+     */
+    private CardLayout c = new CardLayout();
+    private JPanel screen =new JPanel();
+
+    private SnakeMenu menu=new SnakeMenu("Snake",800,800);
+    private GrilleView grille=new GrilleView();
 
     /**
      * Constructeur pour la classe App
      */
 
     public App(String title, int width, int height) {
+
+        //Vérification
+        if (instance == null) {
+            this.instance = this;
+        }
+
         // create the window frame
         createWindow(title, width, height);
-        this.setLayout(c);
 
-        this.add(menu,"Menu");
-        this.add(grille,"jeu");
-        // add components to the window
-        this.show(c,"Menu");
+        //ajout du JPanel sur lequel agit le gestionnaire
+        this.add(this.screen);
+        this.screen.setLayout(c);
+
+        //ajout des élément au gestionnaire
+        this.screen.add(menu,MENU);
+        this.screen.add(grille,GAME);
+        c.show(this.screen,"Menu");
         
     }
+
+
 
     /**
      * Methode qui établie les procédure par défaut pour la fenêtre
@@ -38,4 +65,26 @@ public class App extends JFrame {
         setSize(width, height);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
+
+    public static App getInstance() {
+        return instance;
+    }
+
+    /**
+     * méthode qui permet de changer le card afficher par le CardLayout
+     * @param screen ecran a afficher
+     */
+    public void changeDisplay(int screen ) {
+        switch (screen){
+            case 0:this.c.show(this.screen,MENU);
+            break;
+
+            case 1: this.c.show(this.screen,GAME);
+            break;
+
+            default:break;
+        }
+    }
+
+
 }

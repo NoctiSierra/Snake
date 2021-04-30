@@ -1,3 +1,5 @@
+package model;
+
 /**
  * Classe représentant le snake
  * Utilise une liste chainée 

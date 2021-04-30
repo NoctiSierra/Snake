@@ -1,3 +1,5 @@
+package model;
+
 /**
  * Classe de type model caractérisant les coordonnées X et Y pour un tableau plus particulièrement pour la grille de jeu
  */

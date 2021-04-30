@@ -1,3 +1,5 @@
+package model;
+
 /**
  * Cette classe est une liste chainée qui contribuera a la classe snake
  * 
